@@ -22,6 +22,6 @@ export GEOSERVER_OPTS="-Djava.awt.headless=true -server -Xms${INITIAL_MEMORY} -X
 export JAVA_OPTS="${JAVA_OPTS} ${GEOSERVER_OPTS}"
 
 #patch 8080 to accept huge header
-/usr/bin/sed -i s/'<Connector port="8080"'/'<Connector port="8080" maxHttpHeaderSize="65536"'/g /usr/local/tomcat/conf/server.xml 
+/bin/sed -i s/'<Connector port="8080"'/'<Connector port="8080" maxHttpHeaderSize="65536"'/g /usr/local/tomcat/conf/server.xml 
 
 exec /usr/local/tomcat/bin/catalina.sh run
