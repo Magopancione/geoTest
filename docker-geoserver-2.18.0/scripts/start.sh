@@ -25,24 +25,23 @@ if [[ ${SAMPLE_DATA} =~ [Tt][Rr][Uu][Ee] ]]; then
 fi
 
 if [[ ${AZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
-  #AZELCAST_CONFIG_DIR="${GEOSERVER_DATA_DIR}/cluster/instance_$RANDOMSTRING"
-  AZELCAST_CONFIG_DIR="${GEOSERVER_DATA_DIR}/cluster/instance_$HOSTNAME"
-  AZELCAST_LOCKFILE="${CLUSTER_CONFIG_DIR}/.cluster.lock"
-  if [[ ! -f $AZELCAST_LOCKFILE ]]; then
-    mkdir -p ${AZELCAST_CONFIG_DIR}
-    cp /build_data/azelcast.xml $AZELCAST_CONFIG_DIR}
+  CLUSTER_CONFIG_DIR="${GEOSERVER_DATA_DIR}/cluster/instance_$HOSTNAME"
+  CLUSTER_LOCKFILE="${CLUSTER_CONFIG_DIR}/.cluster.lock"
+  if [[ ! -f $CLUSTER_LOCKFILE ]]; then
+    mkdir -p ${CLUSTER_CONFIG_DIR}
+    cp /build_data/azelcast.xml ${CLUSTER_CONFIG_DIR}
 # manca il catalog
     unzip /community_plugins/jdbcstore-plugin.zip -d /tmp/cluster/ && \
     unzip /plugins/wps-cluster-hazelcast-plugin.zip -d /tmp/cluster/ && \
     mv /tmp/cluster/*.jar "${CATALINA_HOME}"/webapps/geoserver/WEB-INF/lib/ && \
-    touch ${AZELCAST_LOCKFILE} && rm -r /tmp/cluster/
+    touch ${CLUSTER_LOCKFILE} && rm -r /tmp/cluster/
   fi
 
 fi
 
 
 if [[ ${CLUSTERING} =~ [Tt][Rr][Uu][Ee] ]]; then
-  CLUSTER_CONFIG_DIR="${GEOSERVER_DATA_DIR}/cluster/instance_$RANDOMSTRING"
+  CLUSTER_CONFIG_DIR="${GEOSERVER_DATA_DIR}/cluster/instance_$HOSTNAME"
   CLUSTER_LOCKFILE="${CLUSTER_CONFIG_DIR}/.cluster.lock"
   if [[ ! -f $CLUSTER_LOCKFILE ]]; then
     mkdir -p ${CLUSTER_CONFIG_DIR}
@@ -79,7 +78,7 @@ for ext in $(echo "${COMMUNITY_EXTENSIONS}" | tr ',' ' '); do
   if [[ -z ${COMMUNITY_EXTENSIONS} ]]; then
     echo "Do not install any plugins"
   else
-    MONITOR_AUDIT_PATH="${GEOSERVER_DATA_DIR}/monitoring/monitor_$RANDOMSTRING"
+    MONITOR_AUDIT_PATH="${GEOSERVER_DATA_DIR}/monitoring/monitor_$HOSTNAME"
     if [[ ${ext} == 's3-geotiff-plugin' ]]; then
       s3_config
       install_plugin /community_plugins ${ext}
