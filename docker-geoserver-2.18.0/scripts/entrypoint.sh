@@ -5,7 +5,7 @@ set -e
 /scripts/start.sh
 
 CLUSTER_CONFIG_DIR="${GEOSERVER_DATA_DIR}/cluster/instance_$HOSTNAME"
-MONITOR_AUDIT_PATH="${GEOSERVER_DATA_DIR}/monitoring/monitor_$$HOSTNAME"
+MONITOR_AUDIT_PATH="${GEOSERVER_DATA_DIR}/monitoring/monitor_$HOSTNAME"
 
 export GEOSERVER_OPTS="-Djava.awt.headless=true -server -Xms${INITIAL_MEMORY} -Xmx${MAXIMUM_MEMORY} \
        -XX:PerfDataSamplingInterval=500 -Dorg.geotools.referencing.forceXY=true \
