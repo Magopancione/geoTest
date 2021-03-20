@@ -49,11 +49,16 @@ fi
 # Helper function to setup cluster azelcalst config for the clustering plugin
 function cluster_hazelcast_config() {
 
-  if [[ -f ${CLUSTER_CONFIG_DIR}/jdbcconfig/jdbcconfig.properties ]]; then
-    rm "${CLUSTER_CONFIG_DIR}"/jdbcconfig/jdbcconfig.properties
+  if [[ -f ${GEOSERVER_DATA_DIR}/jdbcconfig/jdbcconfig.properties ]]; then
+    rm "${GEOSERVER_DATA_DIR}"/jdbcconfig/jdbcconfig.properties
+  fi
+
+  if [[ -f ${GEOSERVER_DATA_DIR}/jdbcstore/jdbcstore.properties ]]; then
+    rm "${GEOSERVER_DATA_DIR}"/jdbcstore/jdbcstore.properties
   fi
 
 if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
+  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcconfig/
   cat >>${GEOSERVER_DATA_DIR}/jdbcconfig/jdbcconfig.properties <<EOF
 initdb=true
 import=true
@@ -71,10 +76,7 @@ pool.testOnBorrow=true
 username=${POSTGRES_USER}
 EOF
 
-  if [[ -f ${CLUSTER_CONFIG_DIR}/jdbcstore/jdbcstore.properties ]]; then
-    rm "${CLUSTER_CONFIG_DIR}"/jdbcstore/jdbcstore.properties
-  fi
-
+  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcconfig/
   cat >>${GEOSERVER_DATA_DIR}/jdbcstore/jdbcstore.properties <<EOF
 initdb=true
 deleteDestinationOnRename=true
