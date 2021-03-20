@@ -45,6 +45,55 @@ fi
 
 }
 
+
+# Helper function to setup cluster azelcalst config for the clustering plugin
+function cluster_hazelcast_config() {
+
+#  if [[ -f ${CLUSTER_CONFIG_DIR}/cluster.properties ]]; then
+#    rm "${CLUSTER_CONFIG_DIR}"/cluster.properties
+#  fi
+
+if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
+  cat >>${GEOSERVER_DATA_DIR}/catalogmap/jdbcconfig.properties <<EOF
+initdb=true
+import=true
+pool.poolPreparedStatements=true
+pool.validationQuery=SELECT now()
+pool.minIdle=4
+enabled=true
+pool.maxOpenPreparedStatements=50
+password=usergiskub01
+jdbcUrl=${JDBCURL}
+driverClassName=org.postgresql.Driver
+pool.maxActive=10
+initScript=jdbcconfig/initdb.postgres.sql
+pool.testOnBorrow=true
+username=usergiskub
+EOF
+
+  cat >>${GEOSERVER_DATA_DIR}/storemap/jdbcstore.properties <<EOF
+initdb=true
+deleteDestinationOnRename=true
+import=true
+pool.poolPreparedStatements=true
+pool.validationQuery=SELECT now()
+pool.minIdle=4
+ignoreDirs=data,jdbcstore,jdbcconfig,temp,tmp,logs
+enabled=true
+pool.maxOpenPreparedStatements=50
+password=usergiskub01
+jdbcUrl=${JDBCURL}
+driverClassName=org.postgresql.Driver
+pool.maxActive=10
+initScript=jdbcstore/init.postgres.sql
+pool.testOnBorrow=true
+username=usergiskub
+EOF
+fi
+}
+
+
+
 # Helper function to setup cluster config for the clustering plugin
 function cluster_config() {
   if [[ -f ${CLUSTER_CONFIG_DIR}/cluster.properties ]]; then

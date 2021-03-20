@@ -24,12 +24,12 @@ if [[ ${SAMPLE_DATA} =~ [Tt][Rr][Uu][Ee] ]]; then
   cp -r ${CATALINA_HOME}/data/* ${GEOSERVER_DATA_DIR}
 fi
 
-if [[ ${AZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
+if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
   CLUSTER_CONFIG_DIR="${GEOSERVER_DATA_DIR}/cluster/instance_$HOSTNAME"
   CLUSTER_LOCKFILE="${CLUSTER_CONFIG_DIR}/.cluster.lock"
   if [[ ! -f $CLUSTER_LOCKFILE ]]; then
     mkdir -p ${CLUSTER_CONFIG_DIR}
-    cp /build_data/azelcast.xml ${CLUSTER_CONFIG_DIR}
+    cp /build_data/hazelcast.xml ${CLUSTER_CONFIG_DIR}
 # manca il catalog
     unzip /community_plugins/jdbcstore-plugin.zip -d /tmp/cluster/ && \
     unzip /plugins/wps-cluster-hazelcast-plugin.zip -d /tmp/cluster/ && \
@@ -52,6 +52,8 @@ if [[ ${CLUSTERING} =~ [Tt][Rr][Uu][Ee] ]]; then
   fi
 
 fi
+
+cluster_hazelcast_config
 
 cluster_config
 
