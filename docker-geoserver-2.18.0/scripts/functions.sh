@@ -62,13 +62,13 @@ pool.validationQuery=SELECT now()
 pool.minIdle=4
 enabled=true
 pool.maxOpenPreparedStatements=50
-password=usergiskub01
-jdbcUrl=${JDBCURL}
+password=${POSTGRES_PASS}
+jdbcUrl=jdbc\:postgresql://${HOST}\:${POSTGRES_PORT}/gscatalog
 driverClassName=org.postgresql.Driver
 pool.maxActive=10
 initScript=jdbcconfig/initdb.postgres.sql
 pool.testOnBorrow=true
-username=usergiskub
+username=${POSTGRES_USER}
 EOF
 
   cat >>${GEOSERVER_DATA_DIR}/storemap/jdbcstore.properties <<EOF
@@ -81,13 +81,13 @@ pool.minIdle=4
 ignoreDirs=data,jdbcstore,jdbcconfig,temp,tmp,logs
 enabled=true
 pool.maxOpenPreparedStatements=50
-password=usergiskub01
-jdbcUrl=${JDBCURL}
+password=${POSTGRES_PASS}
+jdbcUrl=jdbc\:postgresql://${HOST}\:${POSTGRES_PORT}/gsstore
 driverClassName=org.postgresql.Driver
 pool.maxActive=10
 initScript=jdbcstore/init.postgres.sql
 pool.testOnBorrow=true
-username=usergiskub
+username=${POSTGRES_USER}
 EOF
 fi
 }
