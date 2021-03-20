@@ -32,9 +32,9 @@ ng-configuration
         <multicast-port>54327</multicast-port>
       </multicast>
       <tcp-ip enabled="true">
-        <interface>geoserver-0.geoserver.gis.svc.cluster.local</interface>
-        <interface>geoserver-1.geoserver.gis.svc.cluster.local</interface>
-        <interface>geoserver-2.geoserver.gis.svc.cluster.local</interface>
+        <interface>geoserver-0</interface>
+        <interface>geoserver-1</interface>
+        <interface>geoserver-2</interface>
       </tcp-ip>
       <aws enabled="false">
         <access-key>my-access-key</access-key>

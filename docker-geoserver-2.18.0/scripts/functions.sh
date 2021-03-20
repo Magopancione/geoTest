@@ -58,8 +58,8 @@ function cluster_hazelcast_config() {
   fi
 
 if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
-  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcconfig/
-  cat >>${GEOSERVER_DATA_DIR}/jdbcconfig/jdbcconfig.properties <<EOF
+  mkdir -p ${GEOSERVER_DATA_DIR}/catalogmap//
+  cat >${GEOSERVER_DATA_DIR}/catalogmap/jdbcconfig.properties <<EOF
 initdb=true
 import=true
 pool.poolPreparedStatements=true
@@ -76,8 +76,8 @@ pool.testOnBorrow=true
 username=${POSTGRES_USER}
 EOF
 
-  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcconfig/
-  cat >>${GEOSERVER_DATA_DIR}/jdbcstore/jdbcstore.properties <<EOF
+  mkdir -p ${GEOSERVER_DATA_DIR}/storemap/
+  cat >${GEOSERVER_DATA_DIR}/storemap/jdbcstore.properties <<EOF
 initdb=true
 deleteDestinationOnRename=true
 import=true
