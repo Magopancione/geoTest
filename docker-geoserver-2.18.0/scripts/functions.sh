@@ -58,43 +58,44 @@ function cluster_hazelcast_config() {
   fi
 
 if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
-  mkdir -p ${GEOSERVER_DATA_DIR}/catalogmap//
-  cat >${GEOSERVER_DATA_DIR}/catalogmap/jdbcconfig.properties <<EOF
-initdb=true
-import=true
+#  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcconfig
+  cat >${GEOSERVER_DATA_DIR}/jdbcconfig/jdbcconfig.properties <<EOF
+initdb=${DB_INIT}
+import=${DBi_INIT}
 pool.poolPreparedStatements=true
 pool.validationQuery=SELECT now()
 pool.minIdle=4
 enabled=true
 pool.maxOpenPreparedStatements=50
-password=${POSTGRES_PASS}
-jdbcUrl=jdbc\:postgresql://${HOST}\:${POSTGRES_PORT}/gscatalog
-driverClassName=org.postgresql.Driver
+password=${DB_PASS}
+jdbcUrl=jdbc\:${DB_TYPE}://${DB_HOST}\:${DB_PORT}/gscatalog
+driverClassName=org.${DB_TYPE}.Driver
 pool.maxActive=10
-initScript=jdbcconfig/initdb.postgres.sql
+initScript=jdbcconfig/initdb.${DB_TYPE}.sql
 pool.testOnBorrow=true
-username=${POSTGRES_USER}
+username=${DB_USER}
 EOF
 
-  mkdir -p ${GEOSERVER_DATA_DIR}/storemap/
-  cat >${GEOSERVER_DATA_DIR}/storemap/jdbcstore.properties <<EOF
-initdb=true
+#  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcstore
+  cat >${GEOSERVER_DATA_DIR}/jdbcstore/jdbcstore.properties <<EOF
+initdb=${INIT_DB}
 deleteDestinationOnRename=true
-import=true
+import=${IMPORT_DB}
 pool.poolPreparedStatements=true
 pool.validationQuery=SELECT now()
 pool.minIdle=4
 ignoreDirs=data,jdbcstore,jdbcconfig,temp,tmp,logs
 enabled=true
 pool.maxOpenPreparedStatements=50
-password=${POSTGRES_PASS}
-jdbcUrl=jdbc\:postgresql://${HOST}\:${POSTGRES_PORT}/gsstore
-driverClassName=org.postgresql.Driver
+password=${DB_PASS}
+jdbcUrl=jdbc\:${DB_TYPE}://${DB_HOST}\:${DB_PORT}/gsstore
+driverClassName=org.${DB_TYPE}.Driver
 pool.maxActive=10
-initScript=jdbcstore/init.postgres.sql
+initScript=jdbcstore/init.${DB_TYPE}.sql
 pool.testOnBorrow=true
-username=${POSTGRES_USER}
+username=${DB_USER}
 EOF
+
 fi
 }
 
