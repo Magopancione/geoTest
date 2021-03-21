@@ -61,7 +61,7 @@ if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
 #  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcconfig
   cat >${GEOSERVER_DATA_DIR}/jdbcconfig/jdbcconfig.properties <<EOF
 initdb=${DB_INIT}
-import=${DBi_INIT}
+import=$${DB_IMPORT}
 pool.poolPreparedStatements=true
 pool.validationQuery=SELECT now()
 pool.minIdle=4
@@ -78,9 +78,9 @@ EOF
 
 #  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcstore
   cat >${GEOSERVER_DATA_DIR}/jdbcstore/jdbcstore.properties <<EOF
-initdb=${INIT_DB}
+initdb=${DB_INIT}
+import=$${DB_IMPORT}
 deleteDestinationOnRename=true
-import=${IMPORT_DB}
 pool.poolPreparedStatements=true
 pool.validationQuery=SELECT now()
 pool.minIdle=4
