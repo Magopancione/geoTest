@@ -28,7 +28,7 @@ export GEOSERVER_OPTS="-Djava.awt.headless=true -server -Xms${INITIAL_MEMORY} -X
        -Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine \
        -Dgeoserver.login.autocomplete=${LOGIN_STATUS} \
        -DGEOSERVER_CONSOLE_DISABLED=${WEB_INTERFACE} \
-       -Dgeoserver.xframe.shouldSetPolicy=${XFRAME_OPTIONS}
+       -Dgeoserver.xframe.shouldSetPolicy=${XFRAME_OPTIONS} \
        -Dhazelcast.config.dir=$CLUSTER_CONFIG_DIR/instance_$HOSTNAME "
 
 ## Preparare the JVM command line arguments
