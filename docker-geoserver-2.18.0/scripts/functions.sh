@@ -71,7 +71,7 @@ password=${DB_PASS}
 jdbcUrl=jdbc\:${DB_TYPE}://${DB_HOST}\:${DB_PORT}/gscatalog
 driverClassName=org.${DB_TYPE}.Driver
 pool.maxActive=10
-initScript=jdbcconfig/scripts/${INIT_SCRIPTS}.postgres.sql
+initScript=jdbcconfig/scripts/${INIT_SCRIPTS}.sql
 pool.testOnBorrow=true
 username=${DB_USER}
 EOF
