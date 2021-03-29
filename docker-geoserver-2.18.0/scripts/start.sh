@@ -25,7 +25,7 @@ if [[ ${SAMPLE_DATA} =~ [Tt][Rr][Uu][Ee] ]]; then
 fi
 
 if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
-  CLUSTER_CONFIG_DIR="${GEOSERVER_DATA_DIR}/cluster"
+  CLUSTER_CONFIG_DIR="${GEOSERVER_DATA_DIR}/cluster/instance_$HOSTNAME"
   CLUSTER_LOCKFILE="${CLUSTER_CONFIG_DIR}/.cluster.lock"
   if [[ ! -f $CLUSTER_LOCKFILE ]]; then
     mkdir -p ${CLUSTER_CONFIG_DIR}
