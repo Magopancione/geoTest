@@ -28,9 +28,7 @@ export GEOSERVER_OPTS="-Djava.awt.headless=true -server -Xms${INITIAL_MEMORY} -X
        -Dsun.java2d.renderer=org.marlin.pisces.PiscesRenderingEngine \
        -Dgeoserver.login.autocomplete=${LOGIN_STATUS} \
        -DGEOSERVER_CONSOLE_DISABLED=${WEB_INTERFACE} \
-       -Dgeoserver.xframe.shouldSetPolicy=${XFRAME_OPTIONS}\
-       ${HAZELCAST_XMLPATH} \
-       ${EXTRA_GEOSERVER_VARS}"
+       -Dgeoserver.xframe.shouldSetPolicy=${XFRAME_OPTIONS} "
 
 ## Preparare the JVM command line arguments
 export JAVA_OPTS="${JAVA_OPTS} ${GEOSERVER_OPTS}"
