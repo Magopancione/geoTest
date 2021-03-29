@@ -30,12 +30,12 @@ if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
   if [[ ! -f $CLUSTER_LOCKFILE ]]; then
     mkdir -p ${CLUSTER_CONFIG_DIR}
     cp /build_data/hazelcast.xml ${CLUSTER_CONFIG_DIR}
-#    export HAZELCAST_XMLPATH="-D ${CLUSTER_CONFIG_DIR}/hazelcast.xml"
+    touch ${CLUSTER_LOCKFILE}
+  fi
     unzip /community_plugins/jdbcstore-plugin.zip -d /tmp/cluster/ && \
     unzip /plugins/wps-cluster-hazelcast-plugin.zip -d /tmp/cluster/ && \
     mv /tmp/cluster/*.jar "${CATALINA_HOME}"/webapps/geoserver/WEB-INF/lib/ && \
-    touch ${CLUSTER_LOCKFILE} && rm -r /tmp/cluster/
-  fi
+    rm -r /tmp/cluster/
 
 fi
 
