@@ -29,7 +29,9 @@ if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
   CLUSTER_LOCKFILE="${CLUSTER_CONFIG_DIR}/.cluster.lock"
   if [[ ! -f $CLUSTER_LOCKFILE ]]; then
     mkdir -p ${CLUSTER_CONFIG_DIR}
-    cp /build_data/hazelcast.xml ${CLUSTER_CONFIG_DIR}
+#    cp /build_data/hazelcast.xml ${CLUSTER_CONFIG_DIR}
+    cp /build_data/hazelcast.xml ${GEOSERVER_DATA_DIR}
+ 
     touch ${CLUSTER_LOCKFILE}
   fi
     unzip /community_plugins/jdbcstore-plugin.zip -d /tmp/cluster/ && \

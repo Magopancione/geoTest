@@ -58,7 +58,8 @@ function cluster_hazelcast_config() {
   fi
 
 if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
-#  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcconfig
+  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcconfig/scripts
+  cp /build_data/initdb.${INIT_SCRIPTS}.sql ${GEOSERVER_DATA_DIR}/jdbcconfig/scripts
   cat >${GEOSERVER_DATA_DIR}/jdbcconfig/jdbcconfig.properties <<EOF
 initdb=${DB_INIT}
 import=${DB_IMPORT}
@@ -76,7 +77,8 @@ pool.testOnBorrow=true
 username=${DB_USER}
 EOF
 
-#  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcstore
+  mkdir -p ${GEOSERVER_DATA_DIR}/jdbcstore/scripts
+  cp /build_data/init.${INIT_SCRIPTS}.sql   ${GEOSERVER_DATA_DIR}/jdbcstore/scripts
   cat >${GEOSERVER_DATA_DIR}/jdbcstore/jdbcstore.properties <<EOF
 initdb=${DB_INIT}
 import=${DB_IMPORT}
