@@ -1,5 +1,5 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-ARG IMAGE_VERSION=9-jre11-slim
+ARG IMAGE_VERSION=9-jre9-slim
 
 #ARG IMAGE_VERSION=jdk11-openjdk-slim-buster
 
