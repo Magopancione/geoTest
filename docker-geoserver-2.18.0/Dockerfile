@@ -1,6 +1,6 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-ARG IMAGE_VERSION=jdk11-openjdk-slim-buster
-
+#ARG IMAGE_VERSION=jdk11-openjdk-slim-buster
+ARG IMAGE_VERSION=9.0.44-jdk11-openjdk-slim-buster
 ARG JAVA_HOME=/usr/local/openjdk-11
 
 FROM tomcat:$IMAGE_VERSION
