@@ -8,7 +8,7 @@
     <name>geoserver</name>
     <password>geoserver</password>
   </group>
-  
+<instance-name>geoserver</instance-name>  
   <!-- 
      Make Hazelcast use log4j just like GeoServer. Remember to add:
        log4j.category.com.hazelcast=INFO
@@ -29,7 +29,9 @@
         <multicast-port>54327</multicast-port>
       </multicast>
       <tcp-ip enabled="true">
-        <interface>geoserver-0</interface>
+        <interface>geoserver-0.geoserver</interface>
+        <interface>geoserver-1.geoserver</interface>
+        <interface>geoserver-2.geoserver</interface>
       </tcp-ip>
       <aws enabled="false">
         <access-key>my-access-key</access-key>
