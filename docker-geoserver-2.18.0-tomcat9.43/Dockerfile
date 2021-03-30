@@ -1,10 +1,8 @@
 #--------- Generic stuff all our Dockerfiles should start with so we get caching ------------
-ARG IMAGE_VERSION=9.0.44-jdk8-openjdk-slim-buster
-
 #ARG IMAGE_VERSION=jdk11-openjdk-slim-buster
+ARG IMAGE_VERSION=9.0.44-jdk11-openjdk-slim-buster
 
-#ARG JAVA_HOME=/usr/local/openjdk-11
-ARG JAVA_HOME=/usr/local/openjdk-8
+ARG JAVA_HOME=/usr/local/openjdk-11
 
 FROM tomcat:$IMAGE_VERSION
 
@@ -18,13 +16,8 @@ ARG ACTIVATE_ALL_COMMUNITY_EXTENTIONS=1
 
 #Install extra fonts to use with sld font markers
 RUN apt-get -y update; apt-get install -y fonts-cantarell lmodern ttf-aenigma ttf-georgewilliams ttf-bitstream-vera \
-    ttf-sjfonts tv-fonts build-essential libapr1-dev   gdal-bin libgdal-java wget zip curl xsltproc certbot \
+    ttf-sjfonts tv-fonts build-essential libapr1-dev libssl-dev  gdal-bin libgdal-java wget zip curl xsltproc certbot \
     certbot  cabextract
-
-
-#removed
-#RUN apt-get -y update; apt-get install -y libssl-dev  
-
 
 RUN wget http://ftp.br.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb && \
     dpkg -i ttf-mscorefonts-installer_3.6_all.deb && rm ttf-mscorefonts-installer_3.6_all.deb
