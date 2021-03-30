@@ -35,7 +35,7 @@ if [[ ${HAZELCAST} =~ [Tt][Rr][Uu][Ee] ]]; then
     touch ${CLUSTER_LOCKFILE}
   fi
     unzip /community_plugins/jdbcstore-plugin.zip -d /tmp/cluster/ && \
-    unzip /plugins/wps-cluster-hazelcast-plugin.zip -d /tmp/cluster/ && \
+    unzip /community_plugins/hz-cluster-plugin.zip d /tmp/cluster/ && \
     mv /tmp/cluster/*.jar "${CATALINA_HOME}"/webapps/geoserver/WEB-INF/lib/ && \
     rm -r /tmp/cluster/
 
