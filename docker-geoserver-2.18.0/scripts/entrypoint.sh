@@ -31,6 +31,9 @@ export GEOSERVER_OPTS="-Djava.awt.headless=true -server -Xms${INITIAL_MEMORY} -X
        -Dgeoserver.xframe.shouldSetPolicy=${XFRAME_OPTIONS} \
        -Dhazelcast.config.dir=$CLUSTER_CONFIG_DIR/instance_$HOSTNAME "
 
+#patch 8080 to accept huge header
+/bin/sed -i s/'<Connector port="8080"'/'<Connector port="8080" maxHttpHeaderSize="65536"'/g /usr/local/tomcat/conf/server.xml 
+
 ## Preparare the JVM command line arguments
 export JAVA_OPTS="${JAVA_OPTS} ${GEOSERVER_OPTS}"
 

@@ -5,7 +5,7 @@ ARG JAVA_HOME=/usr/local/openjdk-11
 
 FROM tomcat:$IMAGE_VERSION
 
-LABEL maintainer="Tim Sutton<tim@linfiniti.com>"
+LABEL maintainer="Mago Pancione <sonoilmagopancione@gmail.com>"
 
 ARG GS_VERSION=2.18.2
 
