@@ -32,6 +32,8 @@
         <interface>geoserver-0.geoserver</interface>
         <interface>geoserver-1.geoserver</interface>
         <interface>geoserver-2.geoserver</interface>
+        <interface>geoserver-3.geoserver</interface>
+        <interface>geoserver-4.geoserver</interface>
       </tcp-ip>
       <aws enabled="false">
         <access-key>my-access-key</access-key>

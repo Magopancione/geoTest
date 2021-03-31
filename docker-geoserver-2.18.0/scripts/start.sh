@@ -256,6 +256,9 @@ if [[ ${SSL} =~ [Tt][Rr][Uu][Ee] ]]; then
 
 fi
 
+  #patch 8080 to accept huge header
+    /bin/sed -i s/'<Connector port="8080"'/'<Connector port="8080" maxHttpHeaderSize=$HTTP_HEADERSIZE'/g /usr/local/tomcat/conf/server.xml
+
 if [[ -z "${EXISTING_DATA_DIR}" ]]; then
   /scripts/update_passwords.sh
 fi
